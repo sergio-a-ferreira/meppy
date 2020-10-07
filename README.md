@@ -1,5 +1,5 @@
 # meppy
-a python framework to support the *[Euler Project](https://projecteuler.net/)* problems solving; providing an environment to document, test, benchmark and log the algorithms used.
+a python framework to support the *[Euler Project](https://projecteuler.net/)* problems resolution; providing an environment to document, test, benchmark and log the algorithms used.
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
