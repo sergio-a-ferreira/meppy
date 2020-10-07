@@ -20,18 +20,26 @@ class className():
     class description
 
     Usage:
-    >>> instance = className()
+    >>> instance = className("a", "b", "c", a="b", b="c")
+    start className
     >>> type(instance)
     <class '__main__.className'>
-
+    >>> print(instance.args)
+    ('a', 'b', 'c')
+    >>> print(instance.kwargs)
+    {'a': 'b', 'b': 'c'}
+    
     attributes:
         - attribute name: description
 
     """
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
           """construtor"""
-          pass
+          print("start className")
+
+          self.args = args
+          self.kwargs = kwargs
 
 
     def methodName(self, *args, **kwargs):
@@ -50,16 +58,17 @@ class className():
 
       Examples:
         >>> instance = className()
+        start className
         >>> method = instance.methodName("a", "b", "c", a="b", b="c")
         ('a', 'b', 'c')
         {'a': 'b', 'b': 'c'}
         >>> type(method)
         <class 'NoneType'>
       """
-      l = args
-      d = kwargs
-      print(l)
-      print(d)
+      self.l = args
+      self.d = kwargs
+      print(self.l)
+      print(self.d)
 
 
 
@@ -86,8 +95,8 @@ def functionName(*args, **kwargs):
     """
     l = args
     d = kwargs
-    print(args)
-    print(kwargs)
+    print(l)
+    print(d)
 
 
 
@@ -97,8 +106,13 @@ def __main__():
     """
     #help(__name__)
     import doctest
-    doctest.testmod(name='functionName')
-    
+    doctest.testmod(name='className().methodName("a", "b", "c", a="b", b="c")')
+    instance = className("a", "b", "c", a="b", b="c")
+    print(instance.args)
+    print(instance.kwargs)
+
+    doctest.testmod(name='functionName("a", "b", "c", a="b", b="c")')
+    functionName("a", "b", "c", a="b", b="c")   
 
 
 if __name__ == '__main__':
