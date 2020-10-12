@@ -2,44 +2,83 @@
 
 """
 template with syntax rules and coding conventions
+contains meepy sugar ready to use
 
 
+Examples:
+    >>> import template
+    >>> type(template)
+    <class 'module'>
+
+    
 Notes:
     put help notes and useful documentation here
 
+    functions / methods and variables / atributes initialized as _ (e.g.: _var; _fun())
+    are for internal use and may be changed without previous warning
+
 See Also:
-    add some references (links, bibliography)
+    add some references (links, bibliography) here
 
 Todo:
     fixes and bugs
 
 """
 
-class className():
+__epilog__ = {
+  'author': "Sergio Ferreira",
+  'version': '0.1',
+  'date': "2020-10-11",
+}
+
+
+class ClassName():
     """
     class description
 
-    Usage:
-    >>> instance = className("a", "b", "c", a="b", b="c")
-    start className
-    >>> type(instance)
-    <class '__main__.className'>
-    >>> print(instance.args)
-    ('a', 'b', 'c')
-    >>> print(instance.kwargs)
-    {'a': 'b', 'b': 'c'}
-    
-    attributes:
-        - attribute name: description
+    Attributes:
+      - attribute name: description
+
+    Methods:
+      - method name   : description
+
+    Examples:
+      >>> instance = ClassName()
+      start ClassName
+      >>> type(instance)
+      <class 'template.ClassName'>
 
     """
 
     def __init__(self, *args, **kwargs):
-          """construtor"""
-          print("start className")
+      """
+      construtor
 
-          self.args = args
-          self.kwargs = kwargs
+      Arguments:
+        - describe atributes / arguments here
+
+      Returns:
+        - 
+
+      Examples:
+        >>> instance = ClassName(1, 2, 3, a = "A", b = "B")
+        start ClassName
+        >>> print(instance.args)
+        (1, 2, 3)
+        >>> print(instance.args[:])
+        (1, 2, 3)
+        >>> print(instance.args[0])
+        1
+        >>> print(instance.kwargs)
+        {'a': 'A', 'b': 'B'}
+        >>> print(instance.kwargs['b'])
+        B
+
+      """
+      print("start ClassName")
+
+      self.args = args
+      self.kwargs = kwargs
 
 
     def methodName(self, *args, **kwargs):
@@ -57,18 +96,29 @@ class className():
           error handling
 
       Examples:
-        >>> instance = className()
-        start className
-        >>> method = instance.methodName("a", "b", "c", a="b", b="c")
-        ('a', 'b', 'c')
-        {'a': 'b', 'b': 'c'}
-        >>> type(method)
-        <class 'NoneType'>
+        >>> instance = ClassName(11, 12, 13, X = "x", Y = "y")
+        start ClassName
+        >>> print(instance.args)
+        (11, 12, 13)
+        >>> print(instance.kwargs)
+        {'X': 'x', 'Y': 'y'}
+        >>> instance.methodName(14, 15, Z = "z")
+        (11, 12, 13, 14, 15) {'X': 'x', 'Y': 'y', 'Z': 'z'}
+        >>> print(instance.args[0])
+        11
+        >>> print(instance.args[-1])
+        15
+        >>> print(instance.kwargs['Z'])
+        z
+
       """
-      self.l = args
-      self.d = kwargs
-      print(self.l)
-      print(self.d)
+      if kwargs:
+        self.kwargs.update(kwargs)
+      if args:
+        self.args = self.args + args
+
+      print(self.args, self.kwargs)
+
 
 
 
@@ -89,33 +139,30 @@ def functionName(*args, **kwargs):
     Examples:
       >>> type(functionName)
       <class 'function'>
-      >>> functionName("a", "b", "c", a="b", b="c")
-      ('a', 'b', 'c')
-      {'a': 'b', 'b': 'c'}
+      >>> var = functionName("fa", "fb", "fc", fa = "b", fb = "c")
+      ('fa', 'fb', 'fc') {'fa': 'b', 'fb': 'c'}
+      >>> print(var)
+      0
     """
-    l = args
-    d = kwargs
-    print(l)
-    print(d)
-
+    print(args, kwargs)
+    return 0
 
 
 def __main__():
     """
-    called as script
+    called from cli
     """
-    #help(__name__)
-    import doctest
-    doctest.testmod(name='className().methodName("a", "b", "c", a="b", b="c")')
-    instance = className("a", "b", "c", a="b", b="c")
-    print(instance.args)
-    print(instance.kwargs)
 
-    doctest.testmod(name='functionName("a", "b", "c", a="b", b="c")')
-    functionName("a", "b", "c", a="b", b="c")   
+    import sys
+    import clitools
+    menu = clitools.OptionsMenu(modinfo = __epilog__, arg_val = sys.argv[1:], description = "meppy template with syntax rules and coding conventions")
+    menu.create()
+
+    print("name: ", __name__)
+    print("main: ", __main__)
 
 
 if __name__ == '__main__':
-    __main__()
+  __main__()
 
 
