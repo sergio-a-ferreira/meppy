@@ -126,14 +126,17 @@ def __main__():
     called from cli
     """
     import clitools
-    menu = clitools.optionsMenu(
+    menu = clitools.OptionsMenu(
       description = "meppy date and time tools and utils",
-      help = True,
-      version = __version__,
-      author = __author__,
-      data = __date__
-    )
+      help = True)
+#      version = __version__,
+#      author = __author__,
+#      data = __date__
+    _test(5)
     menu.create()
+
+
+
 
 
 if __name__ == '__main__':
